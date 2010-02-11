@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * Implementation of hook_nodeapi().
+ *
+ * Strips dots and slashes from URL aliases when node is created/edited 
+ **/
+ 
+function path_cleanup_nodeapi(&$node, $op, $arg) {
+  if (user_access('create url aliases') || user_access('administer url aliases') ) {
+    $language = isset($node->language) ? $node->language : '';
+    switch ($op) {
+
+      case 'insert':
+        if (isset($node->path)) {
+          path_cleanup_strip_elements($node->path);
+        }
+        break;
+
+      case 'update':
+        path_cleanup_strip_elements($node->path); 
+        break;
+
+    }
+  }
+}
+
+function path_cleanup_strip_elements(&$path) {
+   $path = trim($path, '.');
+   $path = trim($path,'/'); 	
+}	
+
+
+

@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * Implementation of hook_install().
+ *  Change weight of module so it acts before node path is assigned to db
+ **/
+function path_cleanup_install() {
+  db_query("UPDATE {system} SET weight = -10 WHERE name = 'path_cleanup'");
+}
