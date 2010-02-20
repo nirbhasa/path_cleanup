@@ -26,8 +26,8 @@ function path_cleanup_nodeapi(&$node, $op, $arg) {
 }
 
 function path_cleanup_strip_elements(&$path) {
-   $path = trim($path, '.');
-   $path = trim($path,'/'); 	
+  $path = trim($path, '.');
+  $path = trim($path,'/'); 	
 }	
 
 
